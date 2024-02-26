@@ -1,0 +1,193 @@
+<SummaryPage>
+	apps: app
+	roots: root
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: get_color_from_hex("eaeaea") if app.theme_cls.theme_style == "Light" else get_color_from_hex("#010101")
+		MDBoxLayout:
+			size_hint: 1, None
+			height: toolbar.height
+			MDTopAppBar:
+			    id: toolbar
+			    material_style: "M3"
+			    title: "Gomycode - coding whith python"
+			    anchor_title: "center"
+			    bold: True
+			    font_style: "H2"
+			    md_bg_color: get_color_from_hex("a55aff")
+			    pos_hint: {"top": 1}
+			    left_action_items: [["chevron-left", lambda x: root.go_home()]]
+		MDBoxLayout:
+			padding: "10dp", "2dp", "5dp", "2dp"
+			orientation: "vertical"
+		    ScrollView:
+				do_scroll_x: False
+				#effect_cls: app.effet
+				do_scroll_y: True
+				#bar_width: app.my_bar_width
+				bar_margin: "-5sp"
+				smooth_scroll_end: 10
+				bar_color: app.theme_cls.primary_dark
+				bar_inactive_color: app.theme_cls.primary_light
+				scroll_type: ['bars', 'content']
+
+				MDBoxLayout:  # Contenue de la ScrollVieuw
+					orientation: "vertical"
+					size_hint: 1, None
+					#adaptive_height: True
+					height: self.minimum_height
+					padding: [0, "30dp"]
+					spacing: "30dp"
+					#height: couleur.height + texte.height + 500
+					MDBoxLayout:
+						orientation: "vertical"
+						size_hint: 1, None
+						height: 500
+						md_bg_color: get_color_from_hex("eaeaea")
+						MDBoxLayout:
+							size_hint: 1, None
+							height: 50
+							MDLabel:
+								id: summary_title
+								text: "[b]Sommaire du programme[/b]"
+								theme_text_color: "Custom"
+							    text_color: 1, 0, 0, 1
+								font_style: "H5"
+								markup: True
+								height: self.texture_size[1]
+								halign: "center"
+						MDGridLayout:
+							id: summary_grid
+							pos_hint: {"y": 0.8}
+							cols: 1
+							padding: [20, 30, 20, 0]
+							spacing: 7
+							MDCard:
+								size_hint: 1, None
+								height: 70
+								md_bg_color: get_color_from_hex("eaeaea")
+								pos_hint: {"center_x": .5, "center_y": 0.5}
+								#elevation: 10
+								padding: [10, 3]
+								ripple_behavior: True
+								focus_behavior: True
+								focus_color: get_color_from_hex("eaeaea")
+								unfocus_color: get_color_from_hex("eaeaea")
+								on_release:
+									root.go_seen_page(1)
+								MDLabel:
+									text: "1  Premiers pas en Python"
+									markup: True
+									font_style: "H6"
+									halign: "center"
+									theme_text_color: "Custom"
+								    text_color: 0, 0, 0, 1
+								MDIcon:
+									pos_hint: {"center_x": .5, "center_y": 0.5}
+									icon: "chevron-right"
+									font_size: 30
+									theme_text_color: "Custom"
+								    text_color: 0, 0, 0, 1
+							MDSeparator:
+								size_hint: 1, None
+								height: 2
+							MDCard:
+								size_hint: 1, None
+								height: 70
+								md_bg_color: get_color_from_hex("eaeaea")
+								pos_hint: {"center_x": .5, "center_y": 0.5}
+								#elevation: 10
+								padding: [10, 3]
+								ripple_behavior: True
+								focus_behavior: True
+								focus_color: get_color_from_hex("eaeaea")
+								unfocus_color: get_color_from_hex("eaeaea")
+								on_release:
+									root.go_seen_page(2)
+								MDLabel:
+									text: "2  Les bases de Python"
+									markup: True
+									font_style: "H6"
+									halign: "center"
+									theme_text_color: "Custom"
+								    text_color: 0, 0, 0, 1
+								MDIcon:
+									pos_hint: {"center_x": .5, "center_y": 0.5}
+									icon: "chevron-right"
+									font_size: 30
+									theme_text_color: "Custom"
+								    text_color: 0, 0, 0, 1
+							MDSeparator:
+								size_hint: 1, None
+								height: 2
+								################
+							MDCard:
+								size_hint: 1, None
+								height: 90
+								orientation: "vertical"
+								md_bg_color: get_color_from_hex("eaeaea")
+								pos_hint: {"center_x": .5, "center_y": 0.5}
+								#elevation: 10
+								padding: [10, 3]
+								ripple_behavior: True
+								focus_behavior: True
+								focus_color: get_color_from_hex("eaeaea")
+								unfocus_color: get_color_from_hex("eaeaea")
+								on_release:
+									root.go_seen_page(3)
+								MDBoxLayout:
+									orientation: "horizontal"
+									MDLabel:
+										text: "Quiz ???"
+										markup: True
+										font_style: "H6"
+										halign: "center"
+										theme_text_color: "Custom"
+									    text_color: 0, 0, 0, 1
+									MDIcon:
+										pos_hint: {"center_x": .5, "center_y": 0.5}
+										icon: "chevron-right"
+										font_size: 30
+										theme_text_color: "Custom"
+									    text_color: 0, 0, 0, 1
+								MDBoxLayout:
+									MDLabel:
+										text: "Evaluer vos connaissance"
+										markup: True
+										font_style: "Subtitle2"
+										halign: "center"
+										theme_text_color: "Custom"
+									    text_color: 0, 0, 0, 1
+							MDSeparator:
+								size_hint: 1, None
+								height: 2
+
+#							MDCard:
+#								size_hint: 1, None
+#								height: 70
+#								md_bg_color: get_color_from_hex("eaeaea")
+#								pos_hint: {"center_x": .5, "center_y": 0.5}
+#								#elevation: 10
+#								padding: [10, 3]
+#								ripple_behavior: True
+#								focus_behavior: True
+#								focus_color: get_color_from_hex("eaeaea")
+#								unfocus_color: get_color_from_hex("eaeaea")
+#								on_release:
+#									root.go_seen_page(4)
+#								MDLabel:
+#									text: "4  Structures de données de Python"
+#									markup: True
+#									font_style: "H6"
+#									halign: "center"
+#									theme_text_color: "Custom"
+#								    text_color: 0, 0, 0, 1
+#								MDIcon:
+#									pos_hint: {"center_x": .5, "center_y": 0.5}
+#									icon: "chevron-right"
+#									font_size: 30
+#									theme_text_color: "Custom"
+#								    text_color: 0, 0, 0, 1
+#							MDSeparator:
+#								size_hint: 1, None
+#								height: 2

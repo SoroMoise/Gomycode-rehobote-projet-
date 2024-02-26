@@ -1,0 +1,224 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<HomePage>
+	apps: app
+	roots: root
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: get_color_from_hex("a050f0") if app.theme_cls.theme_style == "Light" else get_color_from_hex("#010101")
+		MDBoxLayout:
+			size_hint: 1, None
+			height: toolbar.height
+			MDTopAppBar:
+			    id: toolbar
+			    material_style: "M3"
+			    title: "Gomycode - coding whith python"
+			    anchor_title: "center"
+			    bold: True
+			    font_style: "H2"
+			    md_bg_color: get_color_from_hex("a55aff")
+			    pos_hint: {"top": 1}
+			    left_action_items: [["chevron-left", lambda x: root.go_connection()]]
+		MDBoxLayout:
+			padding: "10dp", "2dp", "5dp", "2dp"
+			orientation: "vertical"
+		    ScrollView:
+				do_scroll_x: False
+				#effect_cls: app.effet
+				do_scroll_y: True
+				#bar_width: app.my_bar_width
+				bar_margin: "-5sp"
+				smooth_scroll_end: 10
+				bar_color: app.theme_cls.primary_dark
+				bar_inactive_color: app.theme_cls.primary_light
+				scroll_type: ['bars', 'content']
+
+				MDBoxLayout:  # Contenue de la ScrollVieuw
+					orientation: "vertical"
+					size_hint: 1, None
+					#adaptive_height: True
+					height: self.minimum_height
+					padding: [0, "30dp"]
+					spacing: "30dp"
+					#height: couleur.height + texte.height + 500
+					MDBoxLayout:
+						size_hint: 1, None
+						height: "100dp"
+						MDLabel:
+							id: intro_text
+							text: "Apprenez à développer avec Python"
+							theme_text_color: "Custom"
+						    text_color: 1, 1, 1, 1
+							font_style: "H4"
+							height: self.texture_size[1]
+							halign: "center"
+					MDSeparator:
+						size_hint: 1, None
+						height: "3dp"
+					MDBoxLayout:
+						size_hint: 1, None
+						height: intro_text.height
+						MDLabel:
+							id: intro_text
+							text: "Ce cours vous permettra d’apprendre Python, en explorant sa syntaxe (commentaires, indentation, mots-clés ...), en découvrant ses structures de données, en examinant ses conditions de contrôle et ses boucles, et en manipulant ses principales bibliothèques telles que Numpy et Pandas ..."
+							theme_text_color: "Custom"
+						    text_color: 1, 1, 1, 1
+							font_style: "H5"
+							height: self.texture_size[1]
+							halign: "center"
+					MDBoxLayout:
+						size_hint: 1, None
+						height: "150dp"
+						MDBoxLayout:
+							orientation: "vertical"
+							#md_bg_color: get_color_from_hex("caffca")
+							size_hint: 1, 0.3
+							spacing: "30dp"
+							MDCard:
+								size_hint: 0.9, None
+								height: "70dp"
+								md_bg_color: get_color_from_hex("ef0000")
+								pos_hint: {"center_x": .5, "center_y": 0.5}
+								#elevation: 10
+								padding: [10, 3]
+								ripple_behavior: True
+								focus_behavior: True
+								focus_color: get_color_from_hex("ff0000")
+								unfocus_color: get_color_from_hex("ef0000")
+								on_release:
+									root.go_summary()
+								MDLabel:
+									text: "Commencer le programme"
+									markup: True
+									font_style: "H5"
+									halign: "center"
+									theme_text_color: "Custom"
+								    text_color: 1, 1, 1, 1
+								MDIcon:
+									pos_hint: {"center_x": .5, "center_y": 0.5}
+									icon: "chevron-right"
+									font_size: 50
+									theme_text_color: "Custom"
+								    text_color: 1, 1, 1, 1
+
+
+
+#	apps: app
+#	roots: root
+#	MDBoxLayout:
+#		orientation: "vertical"
+#		md_bg_color: get_color_from_hex("a55aff") if app.theme_cls.theme_style == "Light" else get_color_from_hex("#010101")
+#		MDBoxLayout:
+#			size_hint: 1, None
+#			height: toolbar.height
+#			MDTopAppBar:
+#			    id: toolbar
+#			    title: "Paramètres"
+#			    #anchor_title: "center"
+#			    #md_bg_color: app.theme_cls.primary_color
+#			    pos_hint: {"top": 1}
+#			    #elevation: 5
+#			    left_action_items: [["chevron-left", lambda x: app.changer_ecran("main_screen", "right")]]
+#
+#		MDBoxLayout:
+#			orientation: "vertical"
+#			padding: "10dp", "2dp", "5dp", "2dp"
+#		    ScrollView:
+#				do_scroll_x: False
+#				#effect_cls: app.effet
+#				do_scroll_y: True
+#				#bar_width: app.my_bar_width
+#				bar_margin: "-5sp"
+#				smooth_scroll_end: 10
+#				bar_color: app.theme_cls.primary_dark
+#				bar_inactive_color: app.theme_cls.primary_light
+#				scroll_type: ['bars', 'content']
+#				padding: [0, 200]
+#				MDBoxLayout:  # Contenue de la ScrollVieuw
+#					orientation: "vertical"
+#					size_hint: 1, None
+#					#adaptive_height: True
+#					height: self.minimum_height
+#					padding: [0, "10dp"]
+#					spacing: "30dp"
+#					#height: couleur.height + texte.height + 500
+#					MDBoxLayout:
+#						orientation: "vertical"
+#						md_bg_color: get_color_from_hex("a55aff")
+#						MDBoxLayout:
+#							orientation: "horizontal"
+#							#md_bg_color: get_color_from_hex("00caca")
+#							pos_hint: {"center_x": .5, "center_y": 0.9}
+#							size_hint: 1, 0.25
+#							MDLabel:
+#								text: "Gomycode"
+#								markup: True
+#								font_style: "H3"
+#								halign: "right"
+#								theme_text_color: "Custom"
+#							    text_color: 1, 1, 1, 1
+#							MDLabel:
+#								text: "  --  Learn by coding"
+#								markup: True
+#								font_style: "H4"
+#								halign: "left"
+#								theme_text_color: "Custom"
+#							    text_color: 1, 1, 1, 1
+#
+#						MDBoxLayout:
+#							#md_bg_color: get_color_from_hex("ca00ca")
+#							pos_hint: {"center_x": .5, "center_y": 0.9}
+#							size_hint: 1, 0.25
+#							MDLabel:
+#								text: "Apprenez à développer avec Python"
+#								markup: True
+#								font_style: "H4"
+#								halign: "center"
+#								theme_text_color: "Custom"
+#							    text_color: 1, 1, 1, 1
+#						MDBoxLayout:
+#							MDCard:
+#								size_hint: 1, 1
+#								#size: self.parent.size[0]*(0, self.parent.size[1]
+#								#size_x: 1500
+#								padding: [10, 0, 0, 0]
+#								md_bg_color: get_color_from_hex("a55aff")
+#								on_release:
+#									print(self.parent.size)
+#								MDLabel:
+#									text: "Ce cours vous permettra d’apprendre Python, en explorant sa syntaxe (commentaires, indentation, mots-clés ...), en découvrant ses structures de données, en examinant ses conditions de contrôle et ses boucles, et en manipulant ses principales bibliothèques telles que Numpy et Pandas ..."
+#									markup: True
+#									font_style: "H4"
+#									halign: "center"
+#									valign: "center"
+#									theme_text_color: "Custom"
+#								    text_color: 1, 1, 1, 1
+#						MDRelativeLayout:
+#							#md_bg_color: get_color_from_hex("caffca")
+#							size_hint: 1, 0.3
+#							MDCard:
+#								size_hint: None, None
+#								size: 500, 60
+#								md_bg_color: get_color_from_hex("ef0000")
+#								pos_hint: {"x": .6, "center_y": 0.5}
+#								#elevation: 10
+#								ripple_behavior: True
+#								focus_behavior: True
+#								focus_color: get_color_from_hex("ff0000")
+#								unfocus_color: get_color_from_hex("000000")
+#								on_release:
+#									print("je re")
+#								MDLabel:
+#									text: "S’inscrire au programme"
+#									markup: True
+#									font_style: "H4"
+#									halign: "center"
+#									theme_text_color: "Custom"
+#								    text_color: 1, 1, 1, 1
+#								MDIcon:
+#									pos_hint: {"center_x": .5, "center_y": 0.5}
+#									icon: "chevron-right"
+#									font_size: 50
+#									theme_text_color: "Custom"
+#								    text_color: 1, 1, 1, 1
+#

@@ -1,0 +1,229 @@
+<ConnectPage>
+	apps: app
+	roots: root
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: get_color_from_hex("eaeaea") if app.theme_cls.theme_style == "Light" else get_color_from_hex("#010101")
+		MDTopAppBar:
+			id: toolbar
+			title: "Jargon Informatique"
+			anchor_title: "center"
+			#md_bg_color: get_color_from_hex("#7aa6ff")
+			left_action_items: [["magnify", lambda x: [root.recherche(), root.focus()]]]
+			right_action_items: [["dots-vertical", lambda x: root.affiche_menu(x)]]
+		MDBoxLayout:
+			padding: "10dp", "50dp", "5dp", "2dp"
+			orientation: "vertical"
+		    ScrollView:
+				do_scroll_x: False
+				#effect_cls: app.effet
+				do_scroll_y: True
+				#bar_width: app.my_bar_width
+				bar_margin: "-5sp"
+				smooth_scroll_end: 10
+				bar_color: app.theme_cls.primary_dark
+				bar_inactive_color: app.theme_cls.primary_light
+				scroll_type: ['bars', 'content']
+
+				MDBoxLayout:  # Contenue de la ScrollVieuw
+					orientation: "vertical"
+					size_hint: 1, None
+					#adaptive_height: True
+					height: self.minimum_height
+					padding: [0, "30dp"]
+					spacing: "30dp"
+					#height: couleur.height + texte.height + 500
+					MDBoxLayout:
+						size_hint: 1, None
+						height: 30
+						MDLabel:
+							id: intro_text
+							text: "Connectez-vous pour acceder aux cours"
+							theme_text_color: "Custom"
+						    text_color: 0, 0, 0, 1
+							font_style: "H4"
+							height: self.texture_size[1]
+							halign: "center"
+					MDSeparator:
+						size_hint: 1, None
+						height: 3
+					MDBoxLayout:
+						size_hint: 1, None
+						height: "200dp"
+						spacing: 30
+						padding: [30, 30, 30, 30]
+						orientation: "vertical"
+						MDTextField:
+							id: id_mail
+						    hint_text: "Email"
+						    helper_text: "user@gmail.com"
+						    validator: "email"
+						    #required: True
+						MDTextField:
+							id: id_pwd
+						    hint_text: "Password"
+						    helper_text: "*********"
+						    password: True
+						    #required: True
+					MDBoxLayout:
+						MDLabel:
+							id: error
+							text: ""
+							markup: True
+							font_style: "H6"
+							halign: "center"
+							theme_text_color: "Custom"
+						    text_color: 1, 0, 0, 1
+					MDBoxLayout:
+						size_hint: 1, None
+						height: 50
+						MDRelativeLayout:
+							#md_bg_color: get_color_from_hex("caffca")
+							size_hint: 1, 0.3
+							MDCard:
+								size_hint: 0.9, None
+								height: "50dp"
+								md_bg_color: get_color_from_hex("ef0000")
+								pos_hint: {"center_x": .5, "center_y": 0.5}
+								#elevation: 10
+								padding: [10, 3]
+								ripple_behavior: True
+								focus_behavior: True
+								focus_color: get_color_from_hex("ff0000")
+								unfocus_color: get_color_from_hex("ef0000")
+								on_release:
+									root.connection(id_mail.text, id_pwd.text)
+								MDLabel:
+									id: id_con
+									text: "Se connecter"
+									markup: True
+									font_style: "H5"
+									halign: "center"
+									theme_text_color: "Custom"
+								    text_color: 1, 1, 1, 1
+								MDIcon:
+									pos_hint: {"center_x": .5, "center_y": 0.5}
+									icon: "chevron-right"
+									font_size: 50
+									theme_text_color: "Custom"
+								    text_color: 1, 1, 1, 1
+
+		MDRelativeLayout:  # La bare d'en bas
+			id: buttom_bar
+			radius: [40, 40, 0, 0]
+			#elevation: 30
+			md_bg_color: app.theme_cls.primary_dark
+			#md_bg_color: get_color_from_hex("#70a0f0")
+			#padding: [self.width*0.04, 0, self.width*0.04, 0]
+			size_hint: 1, None  # 0.07
+			height: "60dp"
+
+			MDFloatingActionButton:  # gauche
+				id: chevron_left
+				icon: "chevron-left"
+				user_font_size: "35dp"
+				theme_text_color: "Custom"
+				ripple_color: app.ripple_color
+				pos_hint: {"center_x": .125, "center_y": .5}
+				text_color: [1, 1, 1, 1]
+				on_press:
+					root.mot_precedent()
+					#print(id_kv_mot.height)
+
+			MDFloatingActionButton:  # aimer
+				id: button_aimer
+				icon: "heart"
+				user_font_size: "35dp"
+				theme_text_color: "Custom"
+				#text_color: get_color_from_hex("#ffffff")
+				pos_hint: {"center_x": .375, "center_y": .5}
+				ripple_color: app.ripple_color
+				on_press:
+					root.aimer(True)
+
+			MDFloatingActionButton:  # aleatoire
+				icon: "shuffle-variant"
+				user_font_size: "35dp"
+				theme_text_color: "Custom"
+				text_color: [1, 1, 1, 1]
+				ripple_color: app.ripple_color
+				pos_hint: {"center_x": .625, "center_y": .5}
+				on_press:
+					root.recherche_aleatoir()
+
+			MDFloatingActionButton:  # droite
+				icon: "chevron-right"
+				#user_font_size: "50dp"
+				theme_text_color: "Custom"
+				text_color: [1, 1, 1, 1]
+				pos_hint: {"center_x": .875, "center_y": .5}
+				ripple_color: app.ripple_color
+				on_press:
+					root.mot_suivant()
+
+<APropos>:
+	orientation: "vertical"
+	size_hint_y:None
+	height: root.height_sreen * 0.5
+	# width: app.width_sreen * 0.9
+	spacing: "5dp"
+	padding: [0, 0, 0, 0]
+	# MDBoxLayout:  # Tout le contenu
+	# 	orientation: "vertical"
+	# 	#spacing: "10dp"
+
+	MDSeparator:
+		size_hint_x: 0.95
+		height: "3dp"
+		pos_hint: {"center_x": 0.5}
+
+	MDBoxLayout:
+		id: content_scroll
+		#md_bg_color: get_color_from_hex("#ffffff")
+		padding: [0, 5, 0, 0]
+		ScrollView:
+			do_scroll_x: False
+			do_scroll_y: True
+#			effect_cls: app.effet
+#			bar_width: app.my_bar_width
+			#bar_pos_y: "left"#"ridht"
+			smooth_scroll_end: 2
+			scroll_type: ['content', 'bars']
+#			bar_margin: app.my_bar_margin
+			#bar_radius: [50, 50, 50, 50]
+			bar_color: app.theme_cls.primary_dark
+			bar_inactive_color: app.theme_cls.primary_light
+			#padding: [0, 0, 30, 0]
+			MDLabel:
+				id: licence
+				padding: ["0dp", "20dp"]
+				height: self.texture_size[1]
+				size_hint_y: None
+				halign: 'justify'
+
+				#text_size: self.width, None
+				text: root.a_propos
+				markup: True
+
+	MDSeparator:
+		padding: [0, 5, 0, 5]
+		size_hint_x: 0.95
+		height: "2dp"
+		orientation: "horizontal"
+		pos_hint: {"center_x": 0.5}
+
+	MDCard:
+		size_hint: None, None
+		width: root.width-15
+		height: "45dp"
+		pos_hint: {"center_x": .5, "center_y": .5}
+		md_bg_color: [1, 1, 1, 1] if app.theme_cls.theme_style == "Light" else content_scroll.md_bg_color
+		ripple_behavior: True
+		# elevation: 6# if app.theme_cls.theme_style == "Light" else 0
+		radius: ["15dp"]
+		on_release: root.parent.parent.parent.dismiss()
+		MDLabel:
+			id: fermer
+			text: "Fermer"
+			bold: True
+			halign: "center"
